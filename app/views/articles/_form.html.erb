@@ -1,0 +1,32 @@
+<%= form_for(@article) do |f| %>
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+      <% @article.errors.full_messages.each do |msn| %> 
+        <div class="alert alert-danger" role="alert">
+            * <%= msn %>
+        </div>
+      <% end %>
+      <h3><%= name %> nuevo articulo</h3>
+      <div class="field">
+          <%= f.text_field :title, placeholder: "Titulo", :class => "form-control" %>
+      </div>
+      <div class="field">
+          Portada: <%= f.file_field :cover %>
+      </div>
+      <div class="field">
+          <%= f.text_area :body, placeholder: "Escribe aqui el articulo", :class => "form-control", rows: "10" %>
+      </div>
+      <div class="field">
+          <label>Categorias</label>
+          <% @categories.each do |category| %>
+            <div class="field">
+                <%= check_box_tag "categories[]", category.id %> <%= category.name %>
+            </div>
+          <% end %>
+      </div>
+      <div class="field">
+          <%= f.submit "Guardar", :class => "btn btn-danger" %>
+      </div>
+  </div>
+  <div class="col-md-3"></div>
+<% end %>

@@ -1,0 +1,29 @@
+<div class="col-md-3"></div>
+<div class="col-md-6 c-ses m-top60" align="center">
+    <h2>Iniciar sesion</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, :class => "form-control" %>
+      </div>
+
+      <div class="field">
+          <%= f.label "Contraseña" %><br />
+          <%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label "Recordarme" %>
+        </div>
+      <% end -%>
+
+      <div class="actions">
+          <%= f.submit "Iniciar sesion", :class => "btn btn-danger" %>
+      </div>
+    <% end %>
+    <%= render "devise/shared/links" %>
+</div>
+<div class="col-md-3"></div>
+

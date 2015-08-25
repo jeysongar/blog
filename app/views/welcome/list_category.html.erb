@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-3 c-accion">
+    <h2 class="underline text-center">Acciones</h2>
+    <a class="col-a" href="/categories/new/">
+      <div class="menu-modules pading-10 non-margin">
+        Crear Categoria
+      </div> 
+    </a>
+  </div>
+  <div class="col-md-9">
+    <h2 class="underline text-center">Lista de Categorias</h2>
+    <table class="table table-striped color-def">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Color</th>
+          <th colspan="3">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <td><%= category.name %></td>
+            <td><%= category.color %></td>
+            <td>
+              <%= link_to 'Ver Articulos', category, :class => "btn btn-danger" %>
+              <%= link_to 'Editar', edit_category_path(category), :class => "btn btn-danger" %>
+              <%= link_to 'Eliminar', category, method: :delete, :class => "btn btn-danger", data: { confirm: 'Esta seguro de elimnar este elemento?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

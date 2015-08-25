@@ -1,0 +1,40 @@
+<div class="col-md-2"></div>
+<div class="col-md-8">
+    <h1><%= @article.title %></h1>
+    <% unless @article.user.nil? %>
+      <p>Escrito por: <%= @article.user.email %></p>
+    <% end %>
+    <div class="field">
+        <label>Tags:</label>
+        <% @article.categories.each do |category| %> 
+          <%= link_to category.name, category, :class => "cat-tag"  %>
+        <% end %>
+    </div>
+    <div class="field">
+        <%= image_tag @article.cover.url(), :class => "img-art"  %>
+    </div>
+    <% if @article.visits_count == 1 %>
+      <p>Visto por: <%= @article.visits_count %> persona</p>
+    <% else %>
+      <p>Visto por: <%= @article.visits_count %> personas</p>
+    <% end %>
+    <div>
+        <p><%= @article.body %></p>
+    </div>
+    <div class="field">
+        <h3>Comentarios</h3>
+        <%= @article.comments.count %> Comentario(s)
+        <%= render "comments/form" %>
+        <ul class="field c-com">
+            <% @article.comments.each do |comment| %>
+              <li class="c-tex">
+                  <span><%= image_tag(comment.user.avatar) %></span>
+                  <span class="t-mar-left"><%= comment.body %></span>
+                  <span class="t_escrito">Escrito por:<%= comment.user.email %> <%= time_ago_in_words(comment.created_at) %> -ago </span>                     
+                  <span class="com-it-del"><%= link_to "Borrar", [@article,comment], :class => "com-del" %></span>
+              </li>
+            <% end %>
+        </ul>
+    </div>
+</div>
+<div class="col-md-2"></div>

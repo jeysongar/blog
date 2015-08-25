@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-3 c-accion">
+    <h2 class="underline text-center">Acciones</h2>
+    <a class="col-a" href="/articles/new/">
+      <div class="menu-modules pading-10 non-margin">
+        Crear Articulo
+      </div> 
+    </a>
+  </div>
+  
+  <div class="col-md-9">
+    <h2 class="underline text-center">Lista de articulos</h2>
+    <% @articles.each do |article| %>
+      <h3><%= link_to article.title, article, :class => "col-a" %></h3>
+      <div>
+        <p>
+          <%= article.body %>
+        </p>
+        <p>
+          <%= link_to "Editar", edit_article_path(article), :class => "btn btn-danger" %>
+          <%= link_to "Eliminar", "/articles/#{article.id}/destroy", method: :put, :class => "btn btn-danger a-color", data: { confirm: 'Esta seguro de elimnar este elemento?' } %>
+          <% if article.may_publish? %>
+            <%= link_to "Publicar", "/articles/#{article.id}/publish", method: :put, :class => "btn btn-danger a-color" %>
+          <% else %>
+            <%= link_to "Despublicar", "/articles/#{article.id}/unpublish", method: :put, :class => "btn btn-danger a-color" %>
+          <% end %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

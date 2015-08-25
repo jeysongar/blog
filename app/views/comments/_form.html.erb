@@ -1,0 +1,19 @@
+<%= form_for([@article,@comment]) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(@comment.errors.count, "error") %> prohibido este comentario se guarden</h2>
+
+        <ul>
+            <% @comment.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+  <% end %>
+  <div class="field">
+      <%= f.text_area :body, :class => "form-control" %>
+  </div>
+  <div class="actions">
+      <%= f.submit "Añadir comentario", :class => "btn btn-danger" %>
+  </div>
+<% end %>

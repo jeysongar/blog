@@ -1,0 +1,16 @@
+<div class="col-md-4">
+    <a class="col-a" href="/articles/<%= article.id %>">
+        <div class="c-art">
+            <h3><%= article.title %></h3>
+            <div class="field con-img">
+                <%= image_tag article.cover.url(), :class => "img-art"  %>
+            </div>
+            <div class="field">
+                <p><%= truncate(article.body,length:100) %></p>
+            </div>
+            <div class="field">
+                <%= link_to "Ver articulo" , article, :class => "btn btn-danger btn-f-width" %>
+            </div>
+        </div>
+    </a>
+</div>   

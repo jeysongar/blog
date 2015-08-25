@@ -1,0 +1,6 @@
+<h1>Articulos</h1>
+<div class="row">
+    <!-- Este llama un parcial _article.html pero lo importante es que render hace el each de los elementos -->
+    <%= render @articles %>
+</div>
+<div class="text-center"><%= will_paginate @articles, renderer: BootstrapPagination::Rails %></div>

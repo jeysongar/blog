@@ -1,0 +1,77 @@
+<header>
+  <nav class="be-red white">
+    <div class="row men-mar">
+      <div class="col-md-3 menu-logo"><span class="logo"><%= link_to "Mi blog", root_path  %></span></div>
+      <div class="nav-marg">
+        <div class="col-md-1 menu"><%= link_to "Inicio", articles_path %></div>
+        <% @categories.each do |category| %>
+          <a href="/categories/<%= category.id %>"><div class="col-md-1 menu"><%= category.name %></div></a>
+        <% end %>
+        <div class="col-md-1 float-user">
+          <li class="dropdown" style="list-style: none;">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <% if user_signed_in? %>
+                Perfil
+              <% else %>
+                Cuenta
+              <% end %>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li role="separator" class="divider"></li>
+              <% if user_signed_in? %>
+                <li><%= link_to "Cerrar sesion", destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Iniciar sesion", new_user_session_path %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to "Crear cuanta", new_user_registration_path %></li>
+              <% end %>
+              <li role="separator" class="divider"></li>
+            </ul>
+          </li>          
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+  </nav>
+   <% if user_signed_in? %>
+      <% if @users.permission_level == 3 %>
+        <nav class="navbar navbar-default">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand">Dashboard</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    Modulos 
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li role="separator" class="divider"></li>
+                    <li class="li-dash"><a href="/list_article/">Articulos</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="li-dash"><a href="/list_category/">Categorias</a></li>
+                    <li role="separator" class="divider"></li>
+                  </ul>
+                </li>
+                <li><a href="#">Usuarios</a></li>
+                <li><a href="#">Permisos</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+      <% end %>
+      <% else %>
+  <% end %>
+</header>

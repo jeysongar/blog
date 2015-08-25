@@ -1,0 +1,11 @@
+<!DOCRYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1><%= @article.title %></h1>
+        <p><%= truncate(@article.body,length:100) %></p>
+        <%= link_to "Leer articulo", article_url(@article) %>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Blog</title>
+        <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,700' rel='stylesheet' type='text/css'>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+    </head>
+    <body>
+        <%= render "partials/menu" %>
+        <div class="wrap">
+            <div class="container cont-bod art-list">
+
+                <% if notice %>
+                  <div aling="center" class="m-top60">
+                      <div class="alert alert-success noti-all" role="alert"><%= notice %></div>
+                  </div>
+                <% end %>
+                <% if alert %>
+                  <div aling="center" class="m-top60">
+                      <div class="alert alert-danger noti-all" role="alert"><%= alert %></div>
+                  </div>
+                <% end %>
+
+                <%= yield %>
+            </div>
+        </div>
+        <div class="t-put"></div>
+        <footer class="be-red white footer">
+            <span>Copyright © 2015 - Todos los derechos reservados Jeyson Garcia</span>
+        </footer>
+    </body>
+</html>
